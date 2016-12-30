@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Role" type="Baiten.Subsidy.Entity.T_Role, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_RoleMap" class="T_Role">
+		 <result property="Id" column="Id"/>
+		 <result property="Name" column="Name"/>
+		 <result property="Remark" column="Remark"/>
+		 <result property="CreateUserId" column="CreateUserId"/>
+		 <result property="CreateTime" column="CreateTime"/>
+		 <result property="UpdateUserId" column="UpdateUserId"/>
+		 <result property="UpdateTime" column="UpdateTime"/>
+		 <result property="Sort" column="Sort"/>
+		 <result property="IsDisabled" column="IsDisabled"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Role" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Sort],
+				[IsDisabled]
+			FROM
+			T_Role
+		]]>
+    </select>
+    <update id="UpdateT_Role" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Role
+			SET 
+			[Id]=#Id#,
+	[Name]=#Name#,
+	[Remark]=#Remark#,
+	[CreateUserId]=#CreateUserId#,
+	[CreateTime]=#CreateTime#,
+	[UpdateUserId]=#UpdateUserId#,
+	[UpdateTime]=#UpdateTime#,
+	[Sort]=#Sort#,
+	[IsDisabled]=#IsDisabled#,
+		]]>
+    </update>
+	<update id="UpdateT_Role" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Role
+			SET 
+				[Id]=#[Id#]	
+				[Name]=#[Name#]	
+				[Remark]=#[Remark#]	
+				[CreateUserId]=#[CreateUserId#]	
+				[CreateTime]=#[CreateTime#]	
+				[UpdateUserId]=#[UpdateUserId#]	
+				[UpdateTime]=#[UpdateTime#]	
+				[Sort]=#[Sort#]	
+				[IsDisabled]=#[IsDisabled#]	
+					]]>
+    </update>
+    <insert id="InsertT_Role" parameterClass="T_Role" >
+		<![CDATA[
+			INSERT INTO [T_Role]
+			(
+							[Id],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Sort],
+				[IsDisabled]
+			)
+			VALUES(
+							[Id],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Sort],
+				[IsDisabled]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Role" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Role] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

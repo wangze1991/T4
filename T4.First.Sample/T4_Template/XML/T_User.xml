@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_User" type="Baiten.Subsidy.Entity.T_User, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_UserMap" class="T_User">
+		 <result property="Id" column="Id"/>
+		 <result property="UserName" column="UserName"/>
+		 <result property="Pwd" column="Pwd"/>
+		 <result property="Remark" column="Remark"/>
+		 <result property="IsOpen" column="IsOpen"/>
+		 <result property="LoginTime" column="LoginTime"/>
+		 <result property="LastLoginTime" column="LastLoginTime"/>
+		 <result property="CreateUserId" column="CreateUserId"/>
+		 <result property="CreateTime" column="CreateTime"/>
+		 <result property="UpdateUser" column="UpdateUser"/>
+		 <result property="UpdateTime" column="UpdateTime"/>
+		 <result property="Sex" column="Sex"/>
+		 <result property="Mobile" column="Mobile"/>
+		 <result property="QQ" column="QQ"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_User" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[UserName],
+				[Pwd],
+				[Remark],
+				[IsOpen],
+				[LoginTime],
+				[LastLoginTime],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUser],
+				[UpdateTime],
+				[Sex],
+				[Mobile],
+				[QQ]
+			FROM
+			T_User
+		]]>
+    </select>
+    <update id="UpdateT_User" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_User
+			SET 
+			[Id]=#Id#,
+	[UserName]=#UserName#,
+	[Pwd]=#Pwd#,
+	[Remark]=#Remark#,
+	[IsOpen]=#IsOpen#,
+	[LoginTime]=#LoginTime#,
+	[LastLoginTime]=#LastLoginTime#,
+	[CreateUserId]=#CreateUserId#,
+	[CreateTime]=#CreateTime#,
+	[UpdateUser]=#UpdateUser#,
+	[UpdateTime]=#UpdateTime#,
+	[Sex]=#Sex#,
+	[Mobile]=#Mobile#,
+	[QQ]=#QQ#,
+		]]>
+    </update>
+	<update id="UpdateT_User" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_User
+			SET 
+				[Id]=#[Id#]	
+				[UserName]=#[UserName#]	
+				[Pwd]=#[Pwd#]	
+				[Remark]=#[Remark#]	
+				[IsOpen]=#[IsOpen#]	
+				[LoginTime]=#[LoginTime#]	
+				[LastLoginTime]=#[LastLoginTime#]	
+				[CreateUserId]=#[CreateUserId#]	
+				[CreateTime]=#[CreateTime#]	
+				[UpdateUser]=#[UpdateUser#]	
+				[UpdateTime]=#[UpdateTime#]	
+				[Sex]=#[Sex#]	
+				[Mobile]=#[Mobile#]	
+				[QQ]=#[QQ#]	
+					]]>
+    </update>
+    <insert id="InsertT_User" parameterClass="T_User" >
+		<![CDATA[
+			INSERT INTO [T_User]
+			(
+							[Id],
+				[UserName],
+				[Pwd],
+				[Remark],
+				[IsOpen],
+				[LoginTime],
+				[LastLoginTime],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUser],
+				[UpdateTime],
+				[Sex],
+				[Mobile],
+				[QQ]
+			)
+			VALUES(
+							[Id],
+				[UserName],
+				[Pwd],
+				[Remark],
+				[IsOpen],
+				[LoginTime],
+				[LastLoginTime],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUser],
+				[UpdateTime],
+				[Sex],
+				[Mobile],
+				[QQ]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_User" parameterClass="int">
+		<![CDATA[
+			Delete From [T_User] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

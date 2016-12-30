@@ -1,0 +1,103 @@
+﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
+<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".xml" #>
+<#@ assembly name="$(ProjectDir)$(OutDir)T4.Sample.Domain.dll" #>
+<#@ assembly name="$(ProjectDir)$(OutDir)T4.First.Sample.dll" #>
+<#@ assembly Name="System.Core" #>
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Data.DataSetExtensions" #>
+<#@ assembly name="System.Xml" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Xml" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ include file="../ModelAuto.ttinclude" #>
+
+<#
+Manager manager= Manager.Create(Host, GenerationEnvironment);
+string namesapce="T4.Sample.Domain";
+string databaseName="Auth";
+
+IList <T4.Sample.Domain.DbTable> tables=T4.First.Sample.DbHelper.getInstance().SetDataBaseName(databaseName).GetDataTables().Result;
+#>
+<#
+ foreach(T4.Sample.Domain.DbTable table in tables){
+	manager.StartNewFile(table.TableName +".xml");
+	string tableName=table.TableName;
+#>
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="<#=namesapce#>" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="<#=tableName#>" type="Baiten.Subsidy.Entity.<#=tableName#>, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="<#=tableName#>Map" class="<#=tableName#>">
+	<#foreach(T4.Sample.Domain.DbColumn column in table.DbColumns){#>
+	 <result property="<#=column.ColumnName#>" column="<#=column.ColumnName#>"/>
+	<#}#>
+	</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="Select<#=tableName#>" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+				<#=table.ToColumnListStr()#>
+			FROM
+			<#=tableName#>
+		]]>
+    </select>
+    <update id="Update<#=tableName#>" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				<#=tableName#>
+			SET 
+			<#
+ 			PushIndent("\t"); 
+			foreach(T4.Sample.Domain.DbColumn column in table.DbColumns){
+			WriteLine("["+column.ColumnName+"]=#"+column.ColumnName+"#,");
+			}
+			 ClearIndent();
+			#>
+		]]>
+    </update>
+	<update id="Update<#=tableName#>" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				<#=tableName#>
+			SET 
+			<#
+			foreach(T4.Sample.Domain.DbColumn column in table.DbColumns){
+			#>
+	[<#=column.ColumnName#>]=#[<#=column.ColumnName#>#]	
+			<#
+            }
+			#>
+		]]>
+    </update>
+    <insert id="Insert<#=tableName#>" parameterClass="<#=tableName#>" >
+		<![CDATA[
+			INSERT INTO [<#=tableName#>]
+			(
+			<#=table.ToColumnListStr()#>
+			)
+			VALUES(
+			<#=table.ToColumnListStr()#>
+			)
+		]]>
+	</insert>
+	<delete id="Delete<#=tableName#>" parameterClass="int">
+		<![CDATA[
+			Delete From [<#=tableName#>] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>
+<#
+
+	manager.EndBlock();
+ }
+ 	manager.Process(true);
+#>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Role_Module_Button" type="Baiten.Subsidy.Entity.T_Role_Module_Button, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_Role_Module_ButtonMap" class="T_Role_Module_Button">
+		 <result property="Id" column="Id"/>
+		 <result property="ModuleId" column="ModuleId"/>
+		 <result property="ButtonId" column="ButtonId"/>
+		 <result property="RoleId" column="RoleId"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Role_Module_Button" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[ModuleId],
+				[ButtonId],
+				[RoleId]
+			FROM
+			T_Role_Module_Button
+		]]>
+    </select>
+    <update id="UpdateT_Role_Module_Button" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Role_Module_Button
+			SET 
+			[Id]=#Id#,
+	[ModuleId]=#ModuleId#,
+	[ButtonId]=#ButtonId#,
+	[RoleId]=#RoleId#,
+		]]>
+    </update>
+	<update id="UpdateT_Role_Module_Button" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Role_Module_Button
+			SET 
+				[Id]=#[Id#]	
+				[ModuleId]=#[ModuleId#]	
+				[ButtonId]=#[ButtonId#]	
+				[RoleId]=#[RoleId#]	
+					]]>
+    </update>
+    <insert id="InsertT_Role_Module_Button" parameterClass="T_Role_Module_Button" >
+		<![CDATA[
+			INSERT INTO [T_Role_Module_Button]
+			(
+							[Id],
+				[ModuleId],
+				[ButtonId],
+				[RoleId]
+			)
+			VALUES(
+							[Id],
+				[ModuleId],
+				[ButtonId],
+				[RoleId]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Role_Module_Button" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Role_Module_Button] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

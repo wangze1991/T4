@@ -1,0 +1,46 @@
+﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
+<#@ template debug="true" hostSpecific="true" #>
+<#@ output extension=".cs" #>
+<#@ Assembly Name="System.Core" #>
+<#@ Assembly Name="System.Windows.Forms" #>
+<#@ assembly name="$(ProjectDir)$(OutDir)T4.Sample.Domain.dll" #>
+<#@ assembly name="$(ProjectDir)$(OutDir)T4.First.Sample.dll" #>
+<#@ import namespace="System"#>
+<#@ import namespace="System.IO"#>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ include file="ModelAuto.ttinclude" #>
+
+<#
+Manager manager= Manager.Create(Host, GenerationEnvironment);
+string namesapce="T4.Sample.Domain";
+string databaseName="Auth";
+
+IList <T4.Sample.Domain.DbTable> tables=T4.First.Sample.DbHelper.getInstance().SetDataBaseName(databaseName).GetDataTables().Result;
+#>
+<#
+ foreach(T4.Sample.Domain.DbTable table in tables)
+ {
+	manager.StartNewFile(table.TableName +".cs");
+#>
+namespace <#=namesapce#>
+{
+	using System;
+	public class <#=table.TableName#>
+    {
+    <#foreach(T4.Sample.Domain.DbColumn column in table.DbColumns){#>
+	public <#=T4.First.Sample.SqlServerDbTypeMap.MapCsharpType(column.DbType)#> <#=column.ColumnName#> { get; set; }
+	<#
+      }	
+	#>
+
+    }
+}
+
+<#
+	manager.EndBlock();
+ }
+ 	manager.Process(true);
+#>

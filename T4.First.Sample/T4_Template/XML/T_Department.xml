@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Department" type="Baiten.Subsidy.Entity.T_Department, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_DepartmentMap" class="T_Department">
+		 <result property="Id" column="Id"/>
+		 <result property="ParentId" column="ParentId"/>
+		 <result property="Sort" column="Sort"/>
+		 <result property="Name" column="Name"/>
+		 <result property="Remark" column="Remark"/>
+		 <result property="CreateUserId" column="CreateUserId"/>
+		 <result property="CreateTime" column="CreateTime"/>
+		 <result property="UpdateUserId" column="UpdateUserId"/>
+		 <result property="UpdateTime" column="UpdateTime"/>
+		 <result property="Icon" column="Icon"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Department" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[ParentId],
+				[Sort],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Icon]
+			FROM
+			T_Department
+		]]>
+    </select>
+    <update id="UpdateT_Department" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Department
+			SET 
+			[Id]=#Id#,
+	[ParentId]=#ParentId#,
+	[Sort]=#Sort#,
+	[Name]=#Name#,
+	[Remark]=#Remark#,
+	[CreateUserId]=#CreateUserId#,
+	[CreateTime]=#CreateTime#,
+	[UpdateUserId]=#UpdateUserId#,
+	[UpdateTime]=#UpdateTime#,
+	[Icon]=#Icon#,
+		]]>
+    </update>
+	<update id="UpdateT_Department" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Department
+			SET 
+				[Id]=#[Id#]	
+				[ParentId]=#[ParentId#]	
+				[Sort]=#[Sort#]	
+				[Name]=#[Name#]	
+				[Remark]=#[Remark#]	
+				[CreateUserId]=#[CreateUserId#]	
+				[CreateTime]=#[CreateTime#]	
+				[UpdateUserId]=#[UpdateUserId#]	
+				[UpdateTime]=#[UpdateTime#]	
+				[Icon]=#[Icon#]	
+					]]>
+    </update>
+    <insert id="InsertT_Department" parameterClass="T_Department" >
+		<![CDATA[
+			INSERT INTO [T_Department]
+			(
+							[Id],
+				[ParentId],
+				[Sort],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Icon]
+			)
+			VALUES(
+							[Id],
+				[ParentId],
+				[Sort],
+				[Name],
+				[Remark],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[Icon]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Department" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Department] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

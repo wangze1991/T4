@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Module_Button" type="Baiten.Subsidy.Entity.T_Module_Button, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_Module_ButtonMap" class="T_Module_Button">
+		 <result property="Id" column="Id"/>
+		 <result property="ModuleId" column="ModuleId"/>
+		 <result property="ButtonId" column="ButtonId"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Module_Button" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[ModuleId],
+				[ButtonId]
+			FROM
+			T_Module_Button
+		]]>
+    </select>
+    <update id="UpdateT_Module_Button" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Module_Button
+			SET 
+			[Id]=#Id#,
+	[ModuleId]=#ModuleId#,
+	[ButtonId]=#ButtonId#,
+		]]>
+    </update>
+	<update id="UpdateT_Module_Button" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Module_Button
+			SET 
+				[Id]=#[Id#]	
+				[ModuleId]=#[ModuleId#]	
+				[ButtonId]=#[ButtonId#]	
+					]]>
+    </update>
+    <insert id="InsertT_Module_Button" parameterClass="T_Module_Button" >
+		<![CDATA[
+			INSERT INTO [T_Module_Button]
+			(
+							[Id],
+				[ModuleId],
+				[ButtonId]
+			)
+			VALUES(
+							[Id],
+				[ModuleId],
+				[ButtonId]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Module_Button" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Module_Button] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

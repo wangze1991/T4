@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0A671E7B-3515-44C7-9960-DBE95804DF80}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>T4.First.Sample</RootNamespace>
+    <AssemblyName>T4.First.Sample</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DbHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerDbTypeMap.cs" />
+    <Compile Include="T4_Template\RunningTime\RuntimeTextTemplate1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RuntimeTextTemplate1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\Template1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\Test.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Button.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Department.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Dep_Role.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Dep_User.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Module.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Module_Button.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Role.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Role_Module_Button.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_Role_User.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="T4_Template\T_User.cs">
+      <DependentUpon>Template1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="T4_Template\ModelAuto.ttinclude" />
+    <None Include="T4_Template\RunningTime\RuntimeTextTemplate1.tt">
+      <Generator>TextTemplatingFilePreprocessor</Generator>
+      <LastGenOutput>RuntimeTextTemplate1.cs</LastGenOutput>
+    </None>
+    <None Include="T4_Template\Template1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Template1.cs</LastGenOutput>
+      <Parameters>&lt;%3fxml version="1.0" encoding="utf-16"%3f&gt;
+&lt;ArrayOfParameterStorage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Parameters>
+      <FormatOutput>True</FormatOutput>
+    </None>
+    <None Include="T4_Template\XML\IbatisXml.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>IbatisXml.xml</LastGenOutput>
+      <FormatOutput>True</FormatOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\T4.Sample.Domain\T4.Sample.Domain.csproj">
+      <Project>{049db5d9-6f96-48c1-ad44-c2365cc24304}</Project>
+      <Name>T4.Sample.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="T4_Template\Data\" />
+    <Folder Include="T4_Template\Domain\" />
+    <Folder Include="T4_Template\Mapping\" />
+    <Folder Include="T4_Template\Repository\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="T4_Template\XML\IbatisXml.xml">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\Test.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Button.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Department.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Dep_Role.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Dep_User.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Module.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Module_Button.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Role.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Role_Module_Button.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_Role_User.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+    <Content Include="T4_Template\XML\T_User.xml">
+      <DependentUpon>IbatisXml.tt</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

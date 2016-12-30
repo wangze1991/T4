@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Dep_Role" type="Baiten.Subsidy.Entity.T_Dep_Role, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_Dep_RoleMap" class="T_Dep_Role">
+		 <result property="Id" column="Id"/>
+		 <result property="RoleId" column="RoleId"/>
+		 <result property="DepId" column="DepId"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Dep_Role" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[RoleId],
+				[DepId]
+			FROM
+			T_Dep_Role
+		]]>
+    </select>
+    <update id="UpdateT_Dep_Role" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Dep_Role
+			SET 
+			[Id]=#Id#,
+	[RoleId]=#RoleId#,
+	[DepId]=#DepId#,
+		]]>
+    </update>
+	<update id="UpdateT_Dep_Role" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Dep_Role
+			SET 
+				[Id]=#[Id#]	
+				[RoleId]=#[RoleId#]	
+				[DepId]=#[DepId#]	
+					]]>
+    </update>
+    <insert id="InsertT_Dep_Role" parameterClass="T_Dep_Role" >
+		<![CDATA[
+			INSERT INTO [T_Dep_Role]
+			(
+							[Id],
+				[RoleId],
+				[DepId]
+			)
+			VALUES(
+							[Id],
+				[RoleId],
+				[DepId]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Dep_Role" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Dep_Role] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

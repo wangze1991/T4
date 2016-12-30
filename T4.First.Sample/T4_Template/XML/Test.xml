@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="Test" type="Baiten.Subsidy.Entity.Test, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="TestMap" class="Test">
+		 <result property="i" column="i"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectTest" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[i]
+			FROM
+			Test
+		]]>
+    </select>
+    <update id="UpdateTest" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				Test
+			SET 
+			[i]=#i#,
+		]]>
+    </update>
+	<update id="UpdateTest" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				Test
+			SET 
+				[i]=#[i#]	
+					]]>
+    </update>
+    <insert id="InsertTest" parameterClass="Test" >
+		<![CDATA[
+			INSERT INTO [Test]
+			(
+							[i]
+			)
+			VALUES(
+							[i]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteTest" parameterClass="int">
+		<![CDATA[
+			Delete From [Test] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>

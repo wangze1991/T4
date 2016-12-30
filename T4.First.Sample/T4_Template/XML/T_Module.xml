@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<sqlMap namespace="T4.Sample.Domain" xmlns="http://ibatis.apache.org/mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"> 
+	<alias>
+			<typeAlias alias="T_Module" type="Baiten.Subsidy.Entity.T_Module, Baiten.Subsidy.Entity" />
+	</alias>
+	<resultMaps>
+	<resultMap id="T_ModuleMap" class="T_Module">
+		 <result property="Id" column="Id"/>
+		 <result property="Sort" column="Sort"/>
+		 <result property="ParentCode" column="ParentCode"/>
+		 <result property="Description" column="Description"/>
+		 <result property="Name" column="Name"/>
+		 <result property="Url" column="Url"/>
+		 <result property="IsView" column="IsView"/>
+		 <result property="IsDisabled" column="IsDisabled"/>
+		 <result property="CreateUserId" column="CreateUserId"/>
+		 <result property="CreateTime" column="CreateTime"/>
+		 <result property="UpdateUserId" column="UpdateUserId"/>
+		 <result property="UpdateTime" column="UpdateTime"/>
+		 <result property="MenuCode" column="MenuCode"/>
+		 <result property="Icon" column="Icon"/>
+		</resultMap>
+	</resultMaps>
+	<statements>
+	<select id="SelectT_Module" parameterClass="HashTable" resultMap="Sub_BureauEnterpriseMap">
+		<![CDATA[
+			SELECT 
+								[Id],
+				[Sort],
+				[ParentCode],
+				[Description],
+				[Name],
+				[Url],
+				[IsView],
+				[IsDisabled],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[MenuCode],
+				[Icon]
+			FROM
+			T_Module
+		]]>
+    </select>
+    <update id="UpdateT_Module" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Module
+			SET 
+			[Id]=#Id#,
+	[Sort]=#Sort#,
+	[ParentCode]=#ParentCode#,
+	[Description]=#Description#,
+	[Name]=#Name#,
+	[Url]=#Url#,
+	[IsView]=#IsView#,
+	[IsDisabled]=#IsDisabled#,
+	[CreateUserId]=#CreateUserId#,
+	[CreateTime]=#CreateTime#,
+	[UpdateUserId]=#UpdateUserId#,
+	[UpdateTime]=#UpdateTime#,
+	[MenuCode]=#MenuCode#,
+	[Icon]=#Icon#,
+		]]>
+    </update>
+	<update id="UpdateT_Module" parameterClass="HashTable">
+		<![CDATA[
+			UPDATE	
+				T_Module
+			SET 
+				[Id]=#[Id#]	
+				[Sort]=#[Sort#]	
+				[ParentCode]=#[ParentCode#]	
+				[Description]=#[Description#]	
+				[Name]=#[Name#]	
+				[Url]=#[Url#]	
+				[IsView]=#[IsView#]	
+				[IsDisabled]=#[IsDisabled#]	
+				[CreateUserId]=#[CreateUserId#]	
+				[CreateTime]=#[CreateTime#]	
+				[UpdateUserId]=#[UpdateUserId#]	
+				[UpdateTime]=#[UpdateTime#]	
+				[MenuCode]=#[MenuCode#]	
+				[Icon]=#[Icon#]	
+					]]>
+    </update>
+    <insert id="InsertT_Module" parameterClass="T_Module" >
+		<![CDATA[
+			INSERT INTO [T_Module]
+			(
+							[Id],
+				[Sort],
+				[ParentCode],
+				[Description],
+				[Name],
+				[Url],
+				[IsView],
+				[IsDisabled],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[MenuCode],
+				[Icon]
+			)
+			VALUES(
+							[Id],
+				[Sort],
+				[ParentCode],
+				[Description],
+				[Name],
+				[Url],
+				[IsView],
+				[IsDisabled],
+				[CreateUserId],
+				[CreateTime],
+				[UpdateUserId],
+				[UpdateTime],
+				[MenuCode],
+				[Icon]
+			)
+		]]>
+	</insert>
+	<delete id="DeleteT_Module" parameterClass="int">
+		<![CDATA[
+			Delete From [T_Module] WHERE Id=#Id#
+		]]>
+    </delete>
+	</statements>
+</sqlMap>
